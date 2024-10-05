@@ -1,0 +1,23 @@
+import = [
+    "~/.config/alacritty/gruvbox.toml",
+]
+
+[shell]
+program = "/bin/zsh"
+args = ["-c", "tmux attach || tmux"]
+
+[window]
+padding = { x = 10, y = 10 }
+opacity = 0.9
+
+[font]
+normal = { family = "0xProto", style = "Regular" }
+size = 12.0
+
+[cursor]
+style = { shape = "Block", blinking = "Always" }
+blink_interval = 600
+
+[colors.cursor]
+cursor = "CellForeground"
+text = "CellBackground"
