@@ -226,7 +226,7 @@ bar {
     colors {
         background $dark
         statusline $light
-        focused_workspace   $purple $purple $dark
+        focused_workspace   $blue   $blue   $dark
         active_workspace    $grey   $dark   $light
         inactive_workspace  $grey   $dark   $grey
         urgent_workspace    $red    $red    $light
