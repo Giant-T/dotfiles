@@ -4,6 +4,11 @@ theme = "gruvbox-dark"
 separator = ""
 
 [[block]]
+block = "temperature"
+[block.theme_overrides]
+idle_bg = "#98971a"
+
+[[block]]
 block = "cpu"
 info_cpu = 20
 warning_cpu = 50
