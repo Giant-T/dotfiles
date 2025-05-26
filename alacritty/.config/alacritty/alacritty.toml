@@ -1,8 +1,5 @@
-import = [
-    "~/.config/alacritty/gruvbox.toml",
-]
 
-[shell]
+[terminal.shell]
 program = "/bin/zsh"
 args = ["-c", "tmux attach || tmux"]
 
@@ -21,3 +18,10 @@ blink_interval = 600
 [colors.cursor]
 cursor = "CellForeground"
 text = "CellBackground"
+
+[general]
+import = [
+    "~/.config/alacritty/hojicha.toml",
+]
+
+[terminal]
