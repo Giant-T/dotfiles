@@ -103,7 +103,6 @@ source $ZSH/oh-my-zsh.sh
 alias vim=nvim
 
 export PATH='/home/cowboy/zig-linux-x86_64-0.14.0':$PATH
-export PATH='/home/cowboy/idea-IU-241.17890.1/bin':$PATH
 
 export TERM=xterm-256color
 

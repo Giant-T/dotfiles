@@ -1,0 +1,52 @@
+* {
+  all: unset;
+  font-family: "0xProto";
+  font-size: 14px;
+  /* --light:      #ebdbb2; */
+  /* --dark:       #282828; */
+  /* --grey:       #928374; */
+  /* --orange:     #fe8019; */
+  /* --green:      #b8bb26; */
+  /* --yellow:     #fabd2f; */
+  /* --purple:     #b16286; */
+  /* --pink:       #d3869b; */
+  /* --red:        #fb4934; */
+  /* --blue:       #83a598; */
+  /* --dark_blue:  #458588; */
+}
+
+// Global Styles
+.top-bar {
+  background-color: #282828;
+  padding: 10px;
+  color: #ebdbb2;
+}
+
+.metric slider {
+  color: #83a598;
+}
+
+.metric scale trough highlight {
+  all: unset;
+  background-color: #b16286;
+  color: #000000;
+  border-radius: 10px;
+}
+
+.metric scale trough {
+  all: unset;
+  background-color: #4e4e4e;
+  border-radius: 50px;
+  min-height: 3px;
+  min-width: 50px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.workspace-entry:hover {
+  color: #458588;
+}
+
+.current {
+  color: #83a598;
+}

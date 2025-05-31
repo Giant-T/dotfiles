@@ -60,7 +60,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-exec --no-startup-id ~/src/volume-notifier/build/volume-notifier
+exec --no-startup-id ~/projects/volume-notifier/build/volume-notifier
 
 # skip and play/pause
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
@@ -210,15 +210,15 @@ exec --no-startup-id picom -b
 exec --no-startup-id dunst
 
 # Opening programs
-exec --no-startup-id i3-msg 'workspace 2:web; exec /usr/bin/firefox'
-exec --no-startup-id i3-msg 'workspace 1:term; exec alacritty'
+exec --no-startup-id bash -c "sleep 1 && i3-msg 'workspace 2:web; exec firefox'"
+exec --no-startup-id bash -c "sleep 1 && i3-msg 'workspace 1:term; exec alacritty'"
 
 # screenshots
 bindsym $mod+Shift+s exec maim -s | xclip -i -t image/png -selection clipboard
 
 # background
 # credit: https://www.mattvince.com/product-category/downloads/page/3/
-exec --no-startup-id feh --bg-max ./Pictures/Outset-Island-morning.jpg
+exec --no-startup-id feh --bg-max "$HOME/Pictures/Outset-Island-morning.jpg"
 
 #target             title   bg      text   indicator  border
 client.focused      $dark_blue   $blue   $dark  $dark_blue      $dark_blue
@@ -230,7 +230,7 @@ client.urgent       $red    $red    $light $red       $pink
 # finds out, if available)
 bar {
     position top
-    status_command ~/.cargo/bin/i3status-rs
+    status_command i3status-rs
     font pango:0xProto 10
 
     colors {
