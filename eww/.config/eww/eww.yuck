@@ -12,8 +12,8 @@
     (box :hexpand false :space-evenly false :spacing "10"
       (label :text "${workspaces}${current_workspace}" :visible false)
       (for workspace in workspaces
-        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
-          (box :class "workspace-entry ${workspace.windows > 0 ? "occupied" : "empty"}"
+        (button :class "workspace-entry" :onclick "hyprctl dispatch workspace ${workspace.id}"
+          (box :class "${workspace.windows > 0 ? "occupied" : "empty"}"
             (label :text "${workspace.id == current_workspace ? "●" : "○" }"
                    :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""}" )
             )
@@ -30,12 +30,38 @@
        :halign "center"
     {music != "" ? "🎵 ${music}" : ""}))
 
-;; TODO: Ajouter les infos cpu, gpu, ram
 (defwidget sys-info []
-    (box :orientation "h" :space-evenly false :spacing "16px" :halign "end"
+    (box :orientation "h" :space-evenly false :spacing 32 :halign "end"
+        (cpu)
+        (ram)
+        (gpu)
         (metric :label "🔊"
             :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%"
             :value volume)
+        (datetime)
+    ))
+
+;; TODO: Changer la couleur du texte en fonction de la valeur good, warning, danger
+(defwidget cpu []
+    (box :orientation "h" :space-evenly false :spacing 16
+        (label :text " ${round(EWW_CPU.avg, 1)}%")
+        (label :text "🌡 ${round(EWW_TEMPS.K10TEMP_TCCD1, 1)}°C")
+    ))
+
+(defwidget gpu []
+    (box :orientation "h" :space-evenly false :spacing 16
+        (label :text "GPU ${gpu.util}%")
+        (label :text "🌡 ${gpu.temp}°C")
+        (label :text " ${gpu.mem_used}/${gpu.mem_total}M")
+    ))
+
+(defwidget ram []
+    (box :orientation "h"
+        (label :text " ${round(EWW_RAM.used_mem_perc, 1)}%")
+    ))
+
+(defwidget datetime []
+    (box :orientation "h"
         time
     ))
 
@@ -57,6 +83,9 @@
 ;; TODO: Check pour etre plugger direct sur la sauce
 (defpoll volume :interval "1s"
   "wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -oP '\\d+\\.?\\d*' | awk '{ printf \"%.0f\\n\", \$1 * 100 }'")
+
+(defpoll gpu :interval "2s"
+  "~/.config/eww/scripts/gpu")
 
 (defpoll time :interval "10s"
   "date '+%H:%M %b %d, %Y'")

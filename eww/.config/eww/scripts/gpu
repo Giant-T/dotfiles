@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Run nvidia-smi once and capture the output
+nvsmi_output="$(nvidia-smi -q -d UTILIZATION,MEMORY,TEMPERATURE)"
+
+# Parse fields from the output
+gpu_temp=$(awk -F: '/GPU Current Temp/ {gsub(/ C/, "", $2); print $2 + 0; exit}' <<< "$nvsmi_output")
+gpu_util=$(awk -F: '/Utilization/ {getline; gsub(/ %/, "", $2); print $2 + 0; exit}' <<< "$nvsmi_output")
+mem_used=$(awk -F: '/FB Memory Usage/{f=1} f && /Used/ {gsub(/ MiB/, "", $2); print $2 + 0; exit}' <<< "$nvsmi_output")
+mem_total=$(awk -F: '/FB Memory Usage/{f=1} f && /Total/ {gsub(/ MiB/, "", $2); print $2 + 0; exit}' <<< "$nvsmi_output")
+
+# Output result
+echo "{\"temp\": ${gpu_temp}, \"util\": ${gpu_util}, \"mem_used\": ${mem_used}, \"mem_total\": ${mem_total}}"

@@ -40,13 +40,16 @@
   min-height: 3px;
   min-width: 50px;
   margin-left: 10px;
-  margin-right: 20px;
 }
 
-.workspace-entry:hover {
+.workspaces button:hover {
   color: #458588;
 }
 
 .current {
   color: #83a598;
+}
+
+.empty {
+  color: #4e4e4e;
 }
