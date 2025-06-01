@@ -2,8 +2,7 @@
   (box :orientation "h"
     (workspaces)
     (music)
-    (sys-info)
-    ))
+    (sys-info)))
 
 (deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces")
 (deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace")
@@ -28,16 +27,21 @@
        :orientation "h"
        :space-evenly false
        :halign "center"
-    {music != "" ? "🎵 ${music}" : ""}))
+       (button 
+            :onclick "playerctl play-pause"
+            {music != "" ? "${playing != "Playing" ? "▶" : "⏸︎"} ${music.artist} - ${music.title}" : ""})))
 
 (defwidget sys-info []
     (box :orientation "h" :space-evenly false :spacing 32 :halign "end"
         (cpu)
         (ram)
         (gpu)
-        (metric :label "🔊"
+        (metric
+            :class "${pipewire.muted ? "muted" : ""}" 
+            :label "${pipewire.muted ? "" : " "}"
+            :onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
             :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%"
-            :value volume)
+            :value {pipewire.volume})
         (datetime)
     ))
 
@@ -65,11 +69,11 @@
         time
     ))
 
-(defwidget metric [label value onchange]
+(defwidget metric [class label value onchange ?onclick]
   (box :orientation "h"
-       :class "metric"
+       :class "metric ${class}"
        :space-evenly false
-    (box :class "label" label)
+    (button :onclick onclick :class "label" label)
     (scale :min 0
            :max 101
            :active {onchange != ""}
@@ -78,11 +82,14 @@
 
 ;; TODO: playing paused 
 (deflisten music :initial ""
-  "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
+  "playerctl --follow metadata --format '\{ \"artist\": \"{{ artist }}\", \"title\": \"{{ title }}\" \}' || true")
+
+(deflisten playing :initial ""
+  "playerctl --follow status")
 
 ;; TODO: Check pour etre plugger direct sur la sauce
-(defpoll volume :interval "1s"
-  "wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -oP '\\d+\\.?\\d*' | awk '{ printf \"%.0f\\n\", \$1 * 100 }'")
+(defpoll pipewire :interval "1s"
+  "~/.config/eww/scripts/get-pipewire-info")
 
 (defpoll gpu :interval "2s"
   "~/.config/eww/scripts/gpu")

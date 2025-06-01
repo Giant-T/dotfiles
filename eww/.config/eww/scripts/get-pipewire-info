@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+info="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+volume=$(echo "$info" | grep -oP "\d+\.?\d*" | awk '{ printf "%.0f\n", $1 * 100 }')
+if echo "$info" | grep -q "\[MUTED\]"; then
+    muted=true
+else
+    muted=false
+fi
+
+echo "{\"volume\": ${volume}, \"muted\": ${muted}}"

@@ -22,15 +22,15 @@
   color: #ebdbb2;
 }
 
-.metric slider {
-  color: #83a598;
-}
-
 .metric scale trough highlight {
   all: unset;
   background-color: #b16286;
   color: #000000;
   border-radius: 10px;
+}
+
+.muted scale trough highlight {
+  background-color: #fb4934;
 }
 
 .metric scale trough {
