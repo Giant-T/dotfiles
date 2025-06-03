@@ -99,10 +99,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+source /usr/share/nvm/init-nvm.sh
 
 alias vim=nvim
-
-export PATH='/home/cowboy/zig-linux-x86_64-0.14.0':$PATH
 
 export TERM=xterm-256color
 

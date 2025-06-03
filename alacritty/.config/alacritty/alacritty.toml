@@ -9,7 +9,7 @@ opacity = 0.9
 
 [font]
 normal = { family = "0xProto", style = "Regular" }
-size = 12.0
+size = 16.0
 
 [cursor]
 style = { shape = "Block", blinking = "Always" }

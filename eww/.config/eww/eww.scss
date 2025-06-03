@@ -33,6 +33,10 @@
   background-color: #fb4934;
 }
 
+.muted {
+  color: #4e4e4e;
+}
+
 .metric scale trough {
   all: unset;
   background-color: #4e4e4e;
@@ -42,14 +46,22 @@
   margin-left: 10px;
 }
 
-.workspaces button:hover {
-  color: #458588;
-}
-
 .current {
   color: #83a598;
 }
 
 .empty {
   color: #4e4e4e;
+}
+
+.good {
+  color: #b8bb26;
+}
+
+.warning {
+  color: #fe8019;
+}
+
+.danger {
+  color: #fb4934;
 }

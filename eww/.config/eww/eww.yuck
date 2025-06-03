@@ -49,13 +49,17 @@
 (defwidget cpu []
     (box :orientation "h" :space-evenly false :spacing 16
         (label :text " ${round(EWW_CPU.avg, 1)}%")
-        (label :text "🌡 ${round(EWW_TEMPS.K10TEMP_TCCD1, 1)}°C")
+        (label 
+            :class "${EWW_TEMPS.K10TEMP_TCCD1 < 50.0 ? "good" : EWW_TEMPS.K10TEMP_TCCD1 < 90.0 ? "warning" : "danger"}"
+            :text "🌡 ${round(EWW_TEMPS.K10TEMP_TCCD1, 1)}°C")
     ))
 
 (defwidget gpu []
     (box :orientation "h" :space-evenly false :spacing 16
         (label :text "GPU ${gpu.util}%")
-        (label :text "🌡 ${gpu.temp}°C")
+        (label 
+            :class "${gpu.temp < 50.0 ? "good" : gpu.temp < 90.0 ? "warning" : "danger"}"
+            :text "🌡 ${gpu.temp}°C")
         (label :text " ${gpu.mem_used}/${gpu.mem_total}M")
     ))
 
