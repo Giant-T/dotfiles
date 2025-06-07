@@ -1,5 +1,5 @@
 (defwidget bar []
-  (box :orientation "h"
+  (centerbox :orientation "h"
     (workspaces)
     (music)
     (sys-info)))
@@ -38,7 +38,7 @@
         (gpu)
         (metric
             :class "${pipewire.muted ? "muted" : ""}" 
-            :label "${pipewire.muted ? "" : " "}"
+            :label "${pipewire.muted ? " " : " "}"
             :onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
             :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%"
             :value {pipewire.volume})
@@ -51,7 +51,7 @@
         (label :text " ${round(EWW_CPU.avg, 1)}%")
         (label 
             :class "${EWW_TEMPS.K10TEMP_TCCD1 < 50.0 ? "good" : EWW_TEMPS.K10TEMP_TCCD1 < 90.0 ? "warning" : "danger"}"
-            :text "🌡 ${round(EWW_TEMPS.K10TEMP_TCCD1, 1)}°C")
+            :text " ${round(EWW_TEMPS.K10TEMP_TCCD1, 1)}°C")
     ))
 
 (defwidget gpu []
@@ -59,13 +59,13 @@
         (label :text "GPU ${gpu.util}%")
         (label 
             :class "${gpu.temp < 50.0 ? "good" : gpu.temp < 90.0 ? "warning" : "danger"}"
-            :text "🌡 ${gpu.temp}°C")
-        (label :text " ${gpu.mem_used}/${gpu.mem_total}M")
+            :text " ${gpu.temp}°C")
+        (label :text " ${gpu.mem_used}/${gpu.mem_total}M")
     ))
 
 (defwidget ram []
     (box :orientation "h"
-        (label :text " ${round(EWW_RAM.used_mem_perc, 1)}%")
+        (label :text " ${round(EWW_RAM.used_mem_perc, 1)}%")
     ))
 
 (defwidget datetime []

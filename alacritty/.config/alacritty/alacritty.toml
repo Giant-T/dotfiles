@@ -1,6 +1,6 @@
 
 [terminal.shell]
-program = "/bin/zsh"
+program = "/run/current-system/sw/bin/zsh"
 args = ["-c", "tmux attach || tmux"]
 
 [window]
@@ -8,7 +8,7 @@ padding = { x = 10, y = 10 }
 opacity = 0.9
 
 [font]
-normal = { family = "0xProto", style = "Regular" }
+normal = { family = "0xProto Nerd Font", style = "Regular" }
 size = 16.0
 
 [cursor]
