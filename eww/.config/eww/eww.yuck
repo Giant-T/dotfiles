@@ -29,7 +29,10 @@
        :halign "center"
        (button 
             :onclick "playerctl play-pause"
-            {music != "" ? "${playing != "Playing" ? "▶" : "⏸︎"} ${music.artist} - ${music.title}" : ""})))
+            (label
+            :limit-width 50
+            :truncate true
+            :text {music != "" ? "${playing != "Playing" ? "▶" : "⏸︎"} ${music.artist} - ${music.title}" : ""}))))
 
 (defwidget sys-info []
     (box :orientation "h" :space-evenly false :spacing 32 :halign "end"
