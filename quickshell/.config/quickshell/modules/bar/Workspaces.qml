@@ -14,11 +14,9 @@ Item {
         layer.smooth: true
 
         anchors.verticalCenter: parent.verticalCenter
-        
 
         Repeater {
             model: 5
-            anchors.verticalCenter: parent.verticalCenter
 
             Workspace {
             }

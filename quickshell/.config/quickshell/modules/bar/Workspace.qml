@@ -13,8 +13,6 @@ Item {
     implicitWidth: text.width
     implicitHeight: text.height
 
-    anchors.verticalCenter: parent.verticalCenter
-
     Text {
         anchors.verticalCenter: parent.verticalCenter
         id: text

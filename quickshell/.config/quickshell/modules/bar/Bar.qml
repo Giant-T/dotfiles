@@ -28,6 +28,17 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
         }
 
+        Text { // TODO: modifier c'est trop hard coded
+            text: `${Player.active.trackArtist} | ${Player.active.trackTitle}`
+
+            width: 550.0
+            elide: Text.ElideRight
+            anchors.centerIn: parent
+            color: Colors.text
+            font.family: Appearance.font.mono
+            font.pointSize: Appearance.font.size
+        }
+
         Text {
             anchors.right: parent.right
             anchors.rightMargin: 16.0
