@@ -1,4 +1,4 @@
-import "root:/widgets"
+import "root:/services"
 
 import Quickshell
 import QtQuick
@@ -13,7 +13,7 @@ Item {
         id: rect
 
         anchors.fill: parent
-        color: "black"
+        color: Colors.background
         visible: false
     }
 
