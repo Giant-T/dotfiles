@@ -4,7 +4,7 @@ import Quickshell
 import Quickshell.Hyprland
 import QtQuick
 
-Item {
+MouseArea {
     id: root
     required property int index
     readonly property bool occupied: Hyprland.workspaces.values
@@ -12,6 +12,15 @@ Item {
     readonly property bool active: Hyprland.focusedWorkspace.id == index + 1
     implicitWidth: text.width
     implicitHeight: text.height
+
+    enabled: true
+
+    onClicked: (mouse) => {
+        if (mouse.button != Qt.LeftButton)
+            return;
+
+        Hyprland.dispatch(`workspace ${root.index + 1}`)
+    }
 
     Text {
         anchors.verticalCenter: parent.verticalCenter

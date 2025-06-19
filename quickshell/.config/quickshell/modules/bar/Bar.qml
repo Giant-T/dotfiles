@@ -37,6 +37,7 @@ Item {
             color: Colors.text
             font.family: Appearance.font.mono
             font.pointSize: Appearance.font.size
+            horizontalAlignment: Text.AlignHCenter
         }
 
         Text {
