@@ -25,14 +25,23 @@ Rectangle {
         spacing: 4.0
 
         StyledText {
+            id: title
             text: appName ? `${appName} | ${summary}` : summary
             font.pointSize: Appearance.font.size.larger
             Layout.alignment: Qt.AlignTop
+            Layout.fillWidth: true
+            elide: Text.ElideRight
         }
 
         StyledText {
+            id: description
             text: body
+            color: Colors.darkText
+            wrapMode: Text.Wrap
+            elide: Text.ElideRight
             Layout.alignment: Qt.AlignTop
+            Layout.fillWidth: true
+            Layout.fillHeight: true
         }
     }
 }
