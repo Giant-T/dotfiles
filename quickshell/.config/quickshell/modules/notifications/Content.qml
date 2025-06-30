@@ -24,33 +24,34 @@ Item {
     }
 
     Rectangle {
+        // TODO: add rounded in corners
         color: Colors.background
         bottomLeftRadius: 8.0
         anchors.fill: parent
+    }
+
+    ScrollView {
+        anchors.fill: parent
+        anchors.topMargin: 8.0
+        anchors.bottomMargin: 8.0
+        anchors.leftMargin: 8.0
         clip: true
 
-        ScrollView {
+        ListView {
+            id: notificationList
+            spacing: 8.0
             anchors.fill: parent
-            anchors.topMargin: 8.0
-            anchors.bottomMargin: 8.0
-            anchors.leftMargin: 8.0
+            model: Notifications.list
+            delegate: Notification { }
 
-            ListView {
-                id: notificationList
-                spacing: 8.0
-                anchors.fill: parent
-                model: Notifications.list
-                delegate: Notification { }
-
-                remove: Transition {
-                    NumberAnimation {
-                        properties: "opacity"
-                        from: 1.0
-                        to: 0.0
-                        duration: Appearance.anim.durations.expressiveDefaultSpatial
-                        easing.type: Easing.BezierSpline
-                        easing.bezierCurve: Appearance.anim.curves.expressiveDefaultSpatial
-                    }
+            remove: Transition {
+                NumberAnimation {
+                    properties: "opacity"
+                    from: 1.0
+                    to: 0.0
+                    duration: Appearance.anim.durations.expressiveDefaultSpatial
+                    easing.type: Easing.BezierSpline
+                    easing.bezierCurve: Appearance.anim.curves.expressiveDefaultSpatial
                 }
             }
         }
