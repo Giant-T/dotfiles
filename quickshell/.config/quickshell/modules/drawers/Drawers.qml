@@ -34,12 +34,27 @@ Variants {
                 width: win.width - 8.0
                 height: win.height - 8.0 - bar.implicitHeight 
                 intersection: Intersection.Xor
+                regions: regions.instances
             }
 
             anchors.top: true
             anchors.bottom: true
             anchors.left: true
             anchors.right: true
+
+            Variants {
+                id: regions
+                model: panels.children
+
+                Region {
+                    required property Item modelData
+                    x: modelData.x + 8.0
+                    y: modelData.y + bar.implicitHeight
+                    width: modelData.width
+                    height: modelData.height
+                    intersection: Intersection.Subtract
+                }
+            }
 
             Item {
                 id: background
@@ -49,6 +64,12 @@ Variants {
                 Border {
                     bar: bar
                 }
+            }
+
+            Panels {
+                id: panels
+                screen: scope.modelData
+                bar: bar
             }
 
             Bar {

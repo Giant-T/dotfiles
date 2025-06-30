@@ -1,4 +1,5 @@
 import "root:/services"
+import "root:/widgets"
 
 import Quickshell
 import Quickshell.Hyprland
@@ -22,7 +23,7 @@ MouseArea {
         Hyprland.dispatch(`workspace ${root.index + 1}`)
     }
 
-    Text {
+    StyledText {
         anchors.verticalCenter: parent.verticalCenter
         id: text
 
@@ -44,7 +45,5 @@ MouseArea {
 
         text: getIcon()
         color: getColor()
-        font.family: Appearance.font.mono
-        font.pointSize: Appearance.font.size
     }
 }
