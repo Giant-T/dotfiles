@@ -3,6 +3,7 @@ import "root:/config"
 import "root:/widgets"
 
 import Quickshell
+import Quickshell.Services.Notifications
 import QtQuick
 import QtQuick.Layouts
 
@@ -11,6 +12,7 @@ Rectangle {
     required property string appName
     required property string summary
     required property string body
+    required property QtObject notification
 
     Layout.alignment: Qt.AlignTop
     width: ListView.view?.width ?? 550
@@ -19,29 +21,37 @@ Rectangle {
     // Ajouter une scroll bar + maxHeight
     color: Colors.lightBackground
 
-    ColumnLayout {
+    MouseArea {
         anchors.fill: parent
-        anchors.margins: 8.0
-        spacing: 4.0
-
-        StyledText {
-            id: title
-            text: appName ? `${appName} | ${summary}` : summary
-            font.pointSize: Appearance.font.size.larger
-            Layout.alignment: Qt.AlignTop
-            Layout.fillWidth: true
-            elide: Text.ElideRight
+        cursorShape: Qt.PointingHandCursor
+        onClicked: () => {
+            Notifications.remove(notification);
         }
 
-        StyledText {
-            id: description
-            text: body
-            color: Colors.darkText
-            wrapMode: Text.Wrap
-            elide: Text.ElideRight
-            Layout.alignment: Qt.AlignTop
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+        ColumnLayout {
+            anchors.fill: parent
+            anchors.margins: 8.0
+            spacing: 4.0
+
+            StyledText {
+                id: title
+                text: appName ? `${appName} | ${summary}` : summary
+                font.pointSize: Appearance.font.size.larger
+                Layout.alignment: Qt.AlignTop
+                Layout.fillWidth: true
+                elide: Text.ElideRight
+            }
+
+            StyledText {
+                id: description
+                text: body
+                color: Colors.darkText
+                wrapMode: Text.Wrap
+                elide: Text.ElideRight
+                Layout.alignment: Qt.AlignTop
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
         }
     }
 }

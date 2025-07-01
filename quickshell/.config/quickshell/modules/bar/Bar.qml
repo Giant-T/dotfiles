@@ -29,8 +29,9 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
         }
 
-        StyledText { // TODO: modifier c'est trop hard coded
-            text: Player.active ? `${Player.active.trackArtist} | ${Player.active.trackTitle}` : ""
+        StyledText {
+            // TODO: add music controls
+            text: Player.active ? [Player.active.trackArtist, Player.active.trackTitle].filter(s => !!s).join(" - ") : "";
 
             width: 550.0
             elide: Text.ElideRight

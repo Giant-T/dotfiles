@@ -8,6 +8,17 @@ Singleton {
     id: root
     readonly property ListModel list: ListModel{}
 
+    function remove(notif) {
+        for (let i = 0; i < root.list.count; i++) {
+            const item = root.list.get(i);
+            if (item.notification === notif) {
+                notif.dismiss();
+                root.list.remove(i);
+                return;
+            }
+        }
+    }
+
     Timer { // Cleans up the list of notifications every seconds
         id: cleanupTimer
         interval: 1000
