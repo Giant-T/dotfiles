@@ -9,10 +9,10 @@ import QtQuick.Layouts
 
 Rectangle {
     id: root
+    required property int notifId
     required property string appName
     required property string summary
     required property string body
-    required property QtObject notification
 
     Layout.alignment: Qt.AlignTop
     width: ListView.view?.width ?? 550
@@ -25,7 +25,7 @@ Rectangle {
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
         onClicked: () => {
-            Notifications.remove(notification);
+            Notifications.remove(notifId);
         }
 
         ColumnLayout {

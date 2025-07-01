@@ -8,11 +8,11 @@ Singleton {
     id: root
     readonly property ListModel list: ListModel{}
 
-    function remove(notif) {
+    function remove(id) {
         for (let i = 0; i < root.list.count; i++) {
             const item = root.list.get(i);
-            if (item.notification === notif) {
-                notif.dismiss();
+            if (item.notifId === id) {
+                item.notification?.dismiss();
                 root.list.remove(i);
                 return;
             }
@@ -29,7 +29,7 @@ Singleton {
             for (let i = 0; i < root.list.count; i++) {
                 const item = root.list.get(i);
                 if (item.expireAt <= now) {
-                    item.notification.expire();
+                    item.notification?.expire();
                     root.list.remove(i);
                 }
             }
@@ -39,11 +39,12 @@ Singleton {
     NotificationServer {
         id: server
 
-        onNotification: notif => {
+        onNotification: (notif) => {
             notif.tracked = true;
             const timeout = (notif.expireTimeout > 0 ? notif.expireTimeout : 5) * 1000;
             const expireAt = Date.now() + timeout;
             root.list.append({
+                notifId: notif.id,
                 notification: notif,
                 appName: notif.appName,
                 summary: notif.summary,
