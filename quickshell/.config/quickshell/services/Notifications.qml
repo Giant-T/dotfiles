@@ -47,6 +47,7 @@ Singleton {
                 notifId: notif.id,
                 notification: notif,
                 appName: notif.appName,
+                appIcon: notif.appIcon,
                 summary: notif.summary,
                 body: notif.body,
                 expireAt: expireAt,
