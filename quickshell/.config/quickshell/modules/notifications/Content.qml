@@ -6,6 +6,7 @@ import Quickshell
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Shapes
 
 Item {
     id: root
@@ -23,11 +24,9 @@ Item {
         }
     }
 
-    Rectangle {
-        // TODO: add rounded in corners
-        color: Colors.background
-        bottomLeftRadius: 8.0
-        anchors.fill: parent
+    Background {
+        width: root.width
+        height: root.height
     }
 
     ScrollView {
