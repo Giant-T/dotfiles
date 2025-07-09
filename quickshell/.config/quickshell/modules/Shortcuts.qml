@@ -1,4 +1,5 @@
 import "root:/widgets"
+import "root:/services"
 
 import Quickshell
 
@@ -12,11 +13,8 @@ Scope {
         description: "Toggle launcher"
         onPressed: root.launcherInterrupted =  false
         onReleased: {
-            if (!root.launcherInterrupted) {
-                const visibilities = Visibilities.getForActive();
-                visibilities.launcher = !visibilities.launcher
-            }
-            root.launcherInterrupted = false;
+            const visibilities = Visibilities.getForActive();
+            visibilities.launcher = !visibilities.launcher
         }
     }
 }

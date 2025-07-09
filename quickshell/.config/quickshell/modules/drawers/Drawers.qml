@@ -1,6 +1,7 @@
 pragma ComponentBehavior: Bound
 
 import "root:/modules/bar"
+import "root:/services"
 
 import Quickshell
 import Quickshell.Wayland
@@ -56,6 +57,14 @@ Variants {
                 }
             }
 
+            HyprlandFocusGrab {
+                active: visibilities.launcher
+                windows: [win]
+                onCleared: {
+                    visibilities.launcher = false;
+                }
+            }
+
             Item {
                 id: background
                 anchors.fill: parent
@@ -66,10 +75,17 @@ Variants {
                 }
             }
 
+            PersistentProperties {
+                id: visibilities
+                property bool launcher
+                Component.onCompleted: Visibilities.screens[scope.modelData] = this
+            }
+
             Panels {
                 id: panels
                 screen: scope.modelData
                 bar: bar
+                visibilities: visibilities
             }
 
             Bar {

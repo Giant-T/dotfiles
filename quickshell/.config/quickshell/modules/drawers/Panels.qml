@@ -1,4 +1,5 @@
 import "root:/modules/notifications" as Notifications
+import "root:/modules/launcher" as Launcher
 
 import Quickshell
 import QtQuick
@@ -6,7 +7,7 @@ import QtQuick
 Item {
     id: root
     required property ShellScreen screen
-    // required property PersistentProperties visibilities
+    required property PersistentProperties visibilities
     required property Item bar
 
     anchors.fill: parent
@@ -15,11 +16,16 @@ Item {
 
     Notifications.Content {
         id: notif
-        // visibilities: root.visibilities
-
-        bar: bar
 
         anchors.right: parent.right
         anchors.top: parent.top
+    }
+
+    Launcher.Content {
+        id: launcher
+        visibilities: root.visibilities
+
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
     }
 }

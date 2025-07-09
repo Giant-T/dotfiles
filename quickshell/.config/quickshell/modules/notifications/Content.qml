@@ -10,7 +10,6 @@ import QtQuick.Shapes
 
 Item {
     id: root
-    required property Item bar
     readonly property int numberOfNotifs: Notifications.list.count
 
     implicitWidth: 550
@@ -25,8 +24,7 @@ Item {
     }
 
     Background {
-        width: root.width
-        height: root.height
+        anchors.fill: parent
     }
 
     ScrollView {
