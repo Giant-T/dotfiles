@@ -1,0 +1,27 @@
+# name: Hojicha colors for ghostty
+# author: Casey Miller
+
+palette = 0=161616
+palette = 1=9c797d
+palette = 2=8a968f
+palette = 3=b5ae84
+palette = 4=808796
+palette = 5=8a879c
+palette = 6=a18b7f
+palette = 7=adacac
+
+palette =  8=696969
+palette =  9=9e5560
+palette = 10=5C635F
+palette = 11=b0b58a
+palette = 12=565A63
+palette = 13=5C5A66
+palette = 14=695C55
+palette = 15=717070
+
+background = 161616
+foreground = adacac
+cursor-color = adacac 
+
+selection-background = 333333
+selection-foreground = 8a879c

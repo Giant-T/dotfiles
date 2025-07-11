@@ -1,0 +1,19 @@
+theme = hojicha
+
+font-family = "0xProto"
+font-size = 15
+
+window-padding-x = 8
+window-padding-y = 8
+
+# cursor
+cursor-style = block
+cursor-style-blink = true
+cursor-invert-fg-bg = true
+
+background-opacity = 0.85
+
+initial-command = tmux a || tmux
+
+confirm-close-surface = false
+mouse-hide-while-typing = true
