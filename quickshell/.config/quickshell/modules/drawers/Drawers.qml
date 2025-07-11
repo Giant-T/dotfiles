@@ -22,7 +22,7 @@ Variants {
             WlrLayershell.namespace: "bebop-drawers"
             color: "transparent"
             WlrLayershell.exclusionMode: ExclusionMode.Ignore
-            WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
+            WlrLayershell.keyboardFocus: visibilities.launcher ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
 
             Exclusions {
                 screen: scope.modelData
