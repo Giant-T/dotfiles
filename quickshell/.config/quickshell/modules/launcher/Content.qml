@@ -5,6 +5,7 @@ import "root:/services"
 import "root:/config"
 
 import Quickshell
+import Quickshell.Widgets
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Shapes
@@ -13,7 +14,7 @@ import QtQuick.Controls
 Item {
     id: root
     required property PersistentProperties visibilities
-    property real contentHeight: Math.min(200, search.height + (appList.contentHeight === 0 ? 0 : appList.contentHeight + 8.0) + 8.0)
+    property real contentHeight: Math.min(300, search.height + (appList.contentHeight === 0 ? 0 : appList.contentHeight + 8.0) + 8.0)
     implicitHeight: visibilities.launcher ? root.contentHeight : 0
     implicitWidth: 600
 
@@ -69,20 +70,41 @@ Item {
                 border.color: Colors.active
                 border.width: index == appList.currentIndex ? 2.0 : 0
 
-                StyledText {
-                    anchors.left: parent.left
-                    anchors.top: parent.top
-                    anchors.leftMargin: 8.0
-                    anchors.topMargin: 8.0
+                RowLayout {
+                    anchors.fill: parent
+                    anchors.margins: 8.0
+                    clip: true
+                    spacing: 8.0
 
-                    text: modelData.name
+                    IconImage {
+                        id: appIcon
+                        Layout.fillWidth: true
+                        Layout.horizontalStretchFactor: -1
+
+                        implicitSize: 32.0
+                        source: Quickshell.iconPath(modelData.icon, true)
+                        asynchronous: true
+                        visible: false
+                        Layout.preferredWidth: visible ? appIcon.implicitSize : 0
+                        onStatusChanged: {
+                            if (appIcon.status == Image.Ready) {
+                                appIcon.visible = true
+                            } else {
+                                appIcon.visible = false
+                            }
+                        }
+                    }
+
+                    StyledText {
+                        Layout.fillWidth: true
+                        Layout.horizontalStretchFactor: 1
+                        text: modelData.name
+                    }
                 }
             }
 
             highlight: Rectangle {
                 color: Colors.active
-                border.color: Colors.active
-                border.width: 2
                 radius: 8.0
             }
         }
@@ -122,6 +144,8 @@ Item {
                     } else {
                         search.text = "";
                         search.focus = false;
+                        appList.positionViewAtBeginning();
+                        appList.currentIndex = 0;
                     }
                 }
             }
