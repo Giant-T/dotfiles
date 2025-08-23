@@ -40,6 +40,23 @@ Item {
         }
 
         StyledText {
+            id: battery
+            text: `BAT ${Battery.percentage}% ${Battery.timeToEmpty}`
+            anchors.right: volume.left
+            anchors.rightMargin: 16.0
+            anchors.verticalCenter: parent.verticalCenter
+        }
+
+        StyledText {
+            id: volume
+            text: Volume.muted ? "MUTED" : `VOL ${Volume.volume}%`
+            anchors.right: clock.left
+            anchors.rightMargin: 16.0
+            anchors.verticalCenter: parent.verticalCenter
+        }
+
+        StyledText {
+            id: clock
             text: Time.time
             anchors.right: parent.right
             anchors.rightMargin: 16.0
