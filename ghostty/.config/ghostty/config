@@ -1,19 +1,21 @@
-theme = hojicha
+theme = "vague"
+background = 161616
 
 font-family = "0xProto"
-font-size = 15
+font-size = 16
 
 window-padding-x = 8
 window-padding-y = 8
 
 # cursor
 cursor-style = block
+shell-integration-features = no-cursor
 cursor-style-blink = true
 cursor-invert-fg-bg = true
 
-background-opacity = 0.85
+background-opacity = 0.88
 
-initial-command = tmux a || tmux
+# initial-command = tmux a || tmux
 
 confirm-close-surface = false
 mouse-hide-while-typing = true

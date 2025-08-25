@@ -70,7 +70,7 @@ ZSH_THEME="eastwood"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,4 +105,4 @@ alias vim=nvim
 
 export TERM=xterm-256color
 
-if [ "$TMUX" = "" ]; then tmux -2; fi
+# if [ "$TMUX" = "" ]; then tmux -2; fi

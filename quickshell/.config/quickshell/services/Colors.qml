@@ -7,8 +7,8 @@ Singleton {
     id: root
 
     property color background: "#161616"
-    property color lightBackground: "#333333"
-    property color text: "#adacac"
-    property color darkText: "#696969"
-    property color active: "#8a968f"
+    property color lightBackground: "#3c3836"
+    property color text: "#ebdbb2"
+    property color darkText: "#a89984"
+    property color active: "#689d6a"
 }
