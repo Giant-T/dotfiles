@@ -41,7 +41,7 @@ Item {
 
         StyledText {
             id: battery
-            text: `BAT ${Battery.percentage}% ${Battery.timeToEmpty}`
+            text: Battery.device == null ? "" : `BAT ${Battery.percentage}% ${Battery.timeToEmpty}`
             anchors.right: volume.left
             anchors.rightMargin: 16.0
             anchors.verticalCenter: parent.verticalCenter
